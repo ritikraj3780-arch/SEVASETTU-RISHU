@@ -2,252 +2,327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SevaSettu Scholarship Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Seva Settu | Scholarship App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
-<style>
-:root{
-  --blue:#0a192f;
-  --gold:#fbbf24;
-  --green:#22c55e;
-}
+    <style>
+        /* --- PW-STYLE APP THEME --- */
+        :root {
+            --primary: #0f172a;      /* Deep EdTech Navy */
+            --accent: #fbbf24;       /* Premium Gold */
+            --accent-hover: #f59e0b;
+            --ngo-green: #10b981;    /* Trust Green */
+            --bg-color: #f8fafc;
+            --surface: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --error: #ef4444;
+        }
 
-body{
-  margin:0;
-  font-family:Segoe UI;
-  background:#f8fafc;
-}
+        body { 
+            margin: 0; background-color: #e2e8f0; 
+            font-family: 'Manrope', sans-serif;
+            display: flex; justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-/* TOP BAR */
-.top-bar{
-  background:red;
-  color:#fff;
-  text-align:center;
-  padding:6px;
-  font-size:12px;
-  font-weight:bold;
-}
+        /* --- MOBILE APP FRAME --- */
+        .app-container {
+            width: 100%; max-width: 480px; min-height: 100vh;
+            background: var(--bg-color); position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.15);
+            padding-bottom: 90px; overflow-x: hidden;
+        }
 
-/* SLIDER */
-.slider{
-  position:relative;
-  height:60vh;
-  overflow:hidden;
-}
+        /* 1. URGENCY TOP BAR */
+        .urgency-bar {
+            background: var(--primary); color: var(--accent);
+            padding: 8px 16px; font-size: 11px; font-weight: 800;
+            display: flex; justify-content: space-between; align-items: center;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .timer-badge { background: rgba(255,255,255,0.15); padding: 3px 8px; border-radius: 4px; color: white; letter-spacing: 1px; }
 
-.slide{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:0.5s;
-}
+        /* 2. APP HEADER */
+        header {
+            background: var(--surface); padding: 12px 16px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        .brand-box { display: flex; align-items: center; gap: 10px; }
+        .logo-img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+        .brand-name { font-weight: 900; font-size: 18px; color: var(--primary); }
+        
+        .header-actions { display: flex; gap: 8px; }
+        .btn-donate { background: var(--ngo-green); color: white; border: none; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
+        .btn-help { border: 1px solid var(--border); background: transparent; color: var(--text-dark); padding: 6px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; text-decoration: none; }
 
-.slide.active{opacity:1;}
+        /* 3. 16:9 PW-STYLE SLIDER */
+        .slider-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #cbd5e1; }
+        .swiper-slide { width: 100%; height: 100%; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* Premium Floating Logo on Slider */
+        .floating-logo {
+            position: absolute; top: 12px; left: 12px; z-index: 20;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.25); backdrop-filter: blur(8px);
+            padding: 4px; border: 1px solid rgba(255,255,255,0.4);
+            pointer-events: none;
+        }
 
-.overlay{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.5);
-}
+        /* PW Style Custom Pagination */
+        .swiper-pagination-bullet { background: rgba(255,255,255,0.6); opacity: 1; transition: 0.3s; }
+        .swiper-pagination-bullet-active { background: var(--accent); width: 20px; border-radius: 10px; }
 
-/* LOGO */
-.logo{
-  position:absolute;
-  top:10px;
-  left:10px;
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  border:2px solid gold;
-  overflow:hidden;
-  z-index:10;
-}
+/* 4. EXAM DETAILS (CLEAN UI) */
+        .section-content { padding: 20px 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
+        .page-title { font-size: 22px; font-weight: 900; color: var(--primary); margin: 0 0 4px 0; }
+        .page-subtitle { font-size: 13px; color: var(--text-muted); font-weight: 600; margin: 0 0 20px 0; }
 
-.logo img{width:100%;height:100%;object-fit:cover;}
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .info-card { background: var(--bg-color); padding: 12px; border-radius: 12px; border: 1px solid var(--border); }
+        .info-label { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+        .info-val { font-size: 15px; font-weight: 900; color: var(--primary); }
+        .highlight { background: #fffbeb; border-color: var(--accent); }
+        .highlight .info-val { color: #d97706; }
 
-/* HERO TEXT */
-.hero{
-  position:absolute;
-  bottom:20px;
-  text-align:center;
-  width:100%;
-  color:#fff;
-  z-index:10;
-}
+        /* 5. SYLLABUS DOWNLOAD BOX */
+        .syllabus-card {
+            background: var(--primary); color: white; padding: 18px; border-radius: 16px;
+            margin: 20px 16px; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+        }
+        .syllabus-card h3 { margin: 0 0 4px 0; font-size: 16px; color: var(--accent); }
+        .syllabus-card p { margin: 0; font-size: 12px; opacity: 0.8; }
+        .btn-download { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 700; text-decoration: none; }
 
-.hero h1{
-  color:var(--gold);
-  font-size:22px;
-  margin:0;
-}
+        /* 6. STRICT REGISTRATION FORM */
+        .form-container { padding: 20px 16px; background: var(--surface); margin-top: 10px; }
+        .form-heading { font-size: 18px; font-weight: 900; color: var(--primary); margin-bottom: 20px; }
+        
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 11px; font-weight: 800; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; }
+        .input-box {
+            width: 100%; padding: 15px; border: 2px solid var(--border); border-radius: 12px;
+            font-size: 15px; font-family: 'Manrope', sans-serif; font-weight: 600;
+            background: var(--bg-color); box-sizing: border-box; transition: 0.2s; color: var(--text-dark);
+        }
+        .input-box:focus { border-color: var(--primary); background: white; outline: none; }
+        
+        .row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-.hero p{
-  font-size:14px;
-}
+        /* Error States for Mobile */
+        .error-state { border-color: var(--error) !important; background: #fef2f2 !important; }
+        .error-text { color: var(--error); font-size: 11px; font-weight: 800; margin-top: 6px; display: none; }
 
-/* BUTTONS */
-.btn{
-  padding:12px;
-  margin:5px;
-  border:none;
-  border-radius:30px;
-  font-weight:bold;
-  width:80%;
-}
-
-.register{background:var(--gold);}
-.donate{background:var(--green);color:#fff;}
-
-/* CARD */
-.card{
-  background:#fff;
-  margin:15px;
-  padding:15px;
-  border-radius:12px;
-}
-
-/* FORM */
-input,select{
-  width:100%;
-  padding:12px;
-  margin-bottom:10px;
-}
-
-.submit{
-  background:var(--blue);
-  color:#fff;
-}
-
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#fff;
-  padding:20px;
-  border-radius:20px 20px 0 0;
-}
-</style>
+        /* 7. FLOATING BOTTOM BUTTON */
+        .bottom-action-bar {
+            position: fixed; bottom: 0; width: 100%; max-width: 480px;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            padding: 16px; box-sizing: border-box; border-top: 1px solid var(--border); z-index: 100;
+        }
+        .btn-pay {
+            width: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            color: var(--primary); border: none; padding: 18px; border-radius: 14px;
+            font-size: 18px; font-weight: 900; text-transform: uppercase; cursor: pointer;
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4); display: flex; justify-content: center; align-items: center; gap: 8px;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="top-bar">
-🔥 Limited Seats | <span id="timer"></span>
-</div>
+<div class="app-container">
 
-<div class="slider">
+    <div class="urgency-bar">
+        <span><i class="fas fa-fire" style="color: #ef4444;"></i> Seats Filling Fast</span>
+        <div class="timer-badge" id="appTimer">48:00:00</div>
+    </div>
 
-<div class="overlay"></div>
+<header>
+        <div class="brand-box">
+            <img src="logo.png" alt="Seva Settu" class="logo-img" onerror="this.src='https://via.placeholder.com/36'">
+            <div class="brand-name">Seva Settu</div>
+        </div>
+        <div class="header-actions">
+            <a href="https://wa.me/918789846368" class="btn-help"><i class="fab fa-whatsapp"></i> Help</a>
+            <button class="btn-donate" onclick="window.location.href='https://rzp.io/rzp/GMMGxh98'">Donate</button>
+        </div>
+    </header>
 
-<div class="logo">
-<img src="logo.png">
-</div>
+    <div class="slider-wrapper">
+        <img src="logo.png" class="floating-logo" onerror="this.style.display='none'">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="banner1.jpg" onerror="this.src='https://via.placeholder.com/800x450?text=Banner+1'"></div>
+                <div class="swiper-slide"><img src="banner2.jpg" onerror="this.src='https://via.placeholder.com/800x450?text=Banner+2'"></div>
+                <div class="swiper-slide"><img src="banner3.jpg" onerror="this.src='https://via.placeholder.com/800x450?text=Banner+3'"></div>
+                <div class="swiper-slide"><img src="banner4.jpg" onerror="this.src='https://via.placeholder.com/800x450?text=Banner+4'"></div>
+                <div class="swiper-slide"><img src="banner5.jpg" onerror="this.src='https://via.placeholder.com/800x450?text=Banner+5'"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
 
-<img src="banner1.jpg" class="slide active">
-<img src="banner2.jpg" class="slide">
-<img src="banner3.jpg" class="slide">
-<img src="banner4.jpg" class="slide">
-<img src="banner5.jpg" class="slide">
+    <div class="section-content">
+        <h1 class="page-title">Bihar Scholarship Test</h1>
+        <p class="page-subtitle">Organized by Seva Settu NGO</p>
 
-<div class="hero">
-<h1>Bihar Scholarship Test</h1>
-<p>Win ₹50,000 + Free Coaching</p>
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-label"><i class="far fa-calendar-alt"></i> Exam Date</div>
+                <div class="info-val">07 June 2026</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label"><i class="far fa-clock"></i> Timing</div>
+                <div class="info-val">10 AM - 12 PM</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label"><i class="fas fa-user-graduate"></i> Eligible</div>
+                <div class="info-val">Class 6 to 12</div>
+            </div>
+            <div class="info-card highlight">
+                <div class="info-label"><i class="fas fa-rupee-sign"></i> Entry Fee</div>
+                <div class="info-val">₹ 199/- Only</div>
+            </div>
+        </div>
+    </div>
 
-<button class="btn register" onclick="openForm()">Register ₹199</button>
-<button class="btn donate" onclick="donate()">Donate ❤️</button>
-</div>
+    <div class="syllabus-card">
+        <div>
+            <h3>Test Syllabus</h3>
+            <p>Download NCERT guidelines</p>
+        </div>
+        <a href="Sevasettu_Final.pdf" class="btn-download" target="_blank"><i class="fas fa-arrow-down"></i> PDF</a>
+    </div>
 
-</div>
+    <div class="form-container">
+        <h2 class="form-heading">Student Registration</h2>
+        <form id="scholarshipForm">
+            <div class="form-group">
+                <label>Student Full Name</label>
+                <input type="text" name="Student_Name" class="input-box" placeholder="Ex: Rahul Kumar" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Father's Name</label>
+                <input type="text" name="Father_Name" class="input-box" placeholder="Ex: Manoj Kumar" required>
+            </div>
+            
+            <div class="form-group">
+                <label>School Name & City</label>
+                <input type="text" name="School_City" class="input-box" placeholder="Ex: DPS, Muzaffarpur" required>
+            </div>
 
-<div class="card">
-<h3>Exam Details</h3>
-<p>Date: 7 June 2026</p>
-<p>Time: 10 AM – 12 PM</p>
-<p>Eligibility: Class 6–12</p>
-<p>Mode: Online + Offline</p>
-<p>Fee: ₹199</p>
-</div>
+            <div class="row-grid">
+                <div class="form-group">
+                    <label>Select Class</label>
+                    <select name="Class" class="input-box" required>
 
-<div class="card">
-<a href="syallabus.pdf" target="_blank">Download Syllabus</a>
-</div>
+<option value="" disabled selected>Select</option>
+                        <option value="6">Class 6</option><option value="7">Class 7</option>
+                        <option value="8">Class 8</option><option value="9">Class 9</option>
+                        <option value="10">Class 10</option><option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Exam Mode</label>
+                    <select name="Mode" class="input-box" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Offline">In School</option>
+                        <option value="Online">From Home</option>
+                    </select>
+                </div>
+            </div>
 
-<!-- FORM -->
-<div id="form" class="modal">
+            <div class="form-group">
+                <label>WhatsApp Mobile No.</label>
+                <input type="tel" id="mobileNumber" name="WhatsApp_Number" class="input-box" placeholder="10 Digit Number" maxlength="10" required>
+                <div id="mobileError" class="error-text">❌ Must be exactly 10 digits.</div>
+            </div>
 
-<h3>Register</h3>
+            <div style="height: 40px;"></div>
+        </form>
+    </div>
 
-<form id="f">
+    <div class="bottom-action-bar">
+        <button type="submit" form="scholarshipForm" class="btn-pay" id="payButton">
+            Pay ₹199 <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
 
-<input type="text" placeholder="Student Name" required>
-<input type="text" placeholder="Father Name" required>
-<input type="text" placeholder="School & City" required>
-
-<select required>
-<option value="">Class</option>
-<option>6</option><option>7</option>
-<option>8</option><option>9</option>
-<option>10</option><option>11</option>
-<option>12</option>
-</select>
-
-<select required>
-<option value="">Mode</option>
-<option>Online</option>
-<option>Offline (School)</option>
-</select>
-
-<input type="tel" pattern="[0-9]{10}" placeholder="Mobile Number" required>
-
-<button class="btn submit">Submit & Pay</button>
-
-</form>
-</div>
-
+</div> <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script>
+    // 1. Initialize PW Style Slider
+    const swiper = new Swiper(".mySwiper", {
+        loop: true,
+        autoplay: { delay: 3500, disableOnInteraction: false },
+        pagination: { el: ".swiper-pagination", clickable: true }
+    });
 
-/* TIMER */
-var end=new Date("June 7, 2026").getTime();
-setInterval(()=>{
-let now=new Date().getTime();
-let d=end-now;
-let days=Math.floor(d/(1000*60*60*24));
-document.getElementById("timer").innerHTML=days+" Days Left";
-},1000);
+    // 2. Dummy Countdown Timer Script
+    let timeLeft = 3600 * 48; // 48 Hours
+    setInterval(() => {
+        let h = Math.floor(timeLeft / 3600);
+        let m = Math.floor((timeLeft % 3600) / 60);
+        let s = timeLeft % 60;
+        document.getElementById('appTimer').innerText = ${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')};
+        timeLeft--;
+    }, 1000);
 
-/* SLIDER */
-let i=0;
-let slides=document.querySelectorAll(".slide");
+    // 3. Strict 10-Digit Mobile Validation & Submission
+    const form = document.getElementById('scholarshipForm');
+    const mobInput = document.getElementById('mobileNumber');
+    const mobError = document.getElementById('mobileError');
+    const payBtn = document.getElementById('payButton');
 
-setInterval(()=>{
-slides[i].classList.remove("active");
-i=(i+1)%slides.length;
-slides[i].classList.add("active");
-},3000);
+    // Block non-numbers while typing
+    mobInput.addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+        this.classList.remove('error-state');
+        mobError.style.display = 'none';
+    });
 
-/* FORM */
-function openForm(){
-document.getElementById("form").style.display="block";
-}
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Final strict regex check for exactly 10 digits
+        if (!/^\d{10}$/.test(mobInput.value)) {
+            mobInput.classList.add('error-state');
+            mobError.style.display = 'block';
+            // Scroll slightly up so user sees the error
+            mobInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
 
-/* PAYMENT */
-document.getElementById("f").addEventListener("submit",function(e){
-e.preventDefault();
-window.location.href="https://rzp.io/rzp/TpRx4Pya";
-});
+        // Lock button and show processing
+        payBtn.innerHTML = 'Processing... <i class="fas fa-spinner fa-spin"></i>';
+        payBtn.disabled = true;
 
-/* DONATE */
-function donate(){
-window.location.href="https://rzp.io/rzp/GMMGxh98";
-}
+        const formData = new FormData(this);
+        // Using FormSubmit endpoint you provided
+        fetch("https://formsubmit.co/ajax/90plusacademy.official@gmail.com", {
+            method: "POST",
+            headers: { 'Accept': 'application/json' },
+            body: formData
+        })
+        .then(() => { 
+            // Redirects to Scholarship Razorpay link after successful form submission
 
+window.location.href = "https://rzp.io/rzp/TpRx4Pya"; 
+        })
+        .catch(() => { 
+            // Failsafe redirect to Razorpay
+            window.location.href = "https://rzp.io/rzp/TpRx4Pya"; 
+        });
+    });
 </script>
-
 </body>
 </html>
