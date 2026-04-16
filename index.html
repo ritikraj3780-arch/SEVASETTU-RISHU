@@ -15,7 +15,6 @@
             --primary: #0f172a;      /* Deep EdTech Navy */
             --accent: #fbbf24;       /* Premium Gold */
             --accent-hover: #f59e0b;
-            --ngo-green: #10b981;    /* Trust Green */
             --bg-color: #f8fafc;
             --surface: #ffffff;
             --text-dark: #1e293b;
@@ -60,8 +59,7 @@
         .brand-name { font-weight: 900; font-size: 18px; color: var(--primary); }
         
         .header-actions { display: flex; gap: 8px; }
-        .btn-donate { background: var(--ngo-green); color: white; border: none; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
-        .btn-help { border: 1px solid var(--border); background: transparent; color: var(--text-dark); padding: 6px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; text-decoration: none; }
+        .btn-help { border: 1px solid var(--border); background: transparent; color: var(--text-dark); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; text-decoration: none; }
 
         /* 3. 16:9 PW-STYLE SLIDER */
         .slider-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: #cbd5e1; }
@@ -81,9 +79,10 @@
         .swiper-pagination-bullet { background: rgba(255,255,255,0.6); opacity: 1; transition: 0.3s; }
         .swiper-pagination-bullet-active { background: var(--accent); width: 20px; border-radius: 10px; }
 
-/* 4. EXAM DETAILS (CLEAN UI) */
+        /* 4. EXAM DETAILS (CLEAN UI) */
         .section-content { padding: 20px 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
-        .page-title { font-size: 22px; font-weight: 900; color: var(--primary); margin: 0 0 4px 0; }
+
+.page-title { font-size: 22px; font-weight: 900; color: var(--primary); margin: 0 0 4px 0; }
         .page-subtitle { font-size: 13px; color: var(--text-muted); font-weight: 600; margin: 0 0 20px 0; }
 
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -145,18 +144,17 @@
         <div class="timer-badge" id="appTimer">48:00:00</div>
     </div>
 
-<header>
+    <header>
         <div class="brand-box">
             <img src="logo.png" alt="Seva Settu" class="logo-img" onerror="this.src='https://via.placeholder.com/36'">
             <div class="brand-name">Seva Settu</div>
         </div>
         <div class="header-actions">
             <a href="https://wa.me/918789846368" class="btn-help"><i class="fab fa-whatsapp"></i> Help</a>
-            <button class="btn-donate" onclick="window.location.href='https://rzp.io/rzp/GMMGxh98'">Donate</button>
         </div>
     </header>
 
-    <div class="slider-wrapper">
+<div class="slider-wrapper">
         <img src="logo.png" class="floating-logo" onerror="this.style.display='none'">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
@@ -172,7 +170,7 @@
 
     <div class="section-content">
         <h1 class="page-title">Bihar Scholarship Test</h1>
-        <p class="page-subtitle">Organized by Seva Settu NGO</p>
+        <p class="page-subtitle">Organized by Seva Settu</p>
 
         <div class="info-grid">
             <div class="info-card">
@@ -224,8 +222,7 @@
                 <div class="form-group">
                     <label>Select Class</label>
                     <select name="Class" class="input-box" required>
-
-<option value="" disabled selected>Select</option>
+                        <option value="" disabled selected>Select</option>
                         <option value="6">Class 6</option><option value="7">Class 7</option>
                         <option value="8">Class 8</option><option value="9">Class 9</option>
                         <option value="10">Class 10</option><option value="11">Class 11</option>
@@ -233,7 +230,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Exam Mode</label>
+
+<label>Exam Mode</label>
                     <select name="Mode" class="input-box" required>
                         <option value="" disabled selected>Select</option>
                         <option value="Offline">In School</option>
@@ -258,7 +256,8 @@
         </button>
     </div>
 
-</div> <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+</div> 
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script>
     // 1. Initialize PW Style Slider
     const swiper = new Swiper(".mySwiper", {
@@ -315,8 +314,7 @@
         })
         .then(() => { 
             // Redirects to Scholarship Razorpay link after successful form submission
-
-window.location.href = "https://rzp.io/rzp/TpRx4Pya"; 
+            window.location.href = "https://rzp.io/rzp/TpRx4Pya"; 
         })
         .catch(() => { 
             // Failsafe redirect to Razorpay
