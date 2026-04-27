@@ -3,34 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bihar Scholarship Test - Seva Settu</title>
+<title>Bihar Scholarship Test | Seva Settu</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root{
---blue:#0a192f;
+--bg:#0a192f;
 --gold:#fbbf24;
+--light:#f8fafc;
 }
 
 body{
 margin:0;
-font-family:Segoe UI;
-background:#f8fafc;
+font-family:'Poppins',sans-serif;
+background:var(--light);
+color:#111;
 }
 
 /* HEADER */
 header{
-background:var(--blue);
+background:var(--bg);
 color:white;
-padding:12px;
+padding:14px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
 }
-.brand{
+.logo{
 color:var(--gold);
-font-weight:800;
+font-weight:700;
+font-size:16px;
 }
 
 /* SLIDER */
@@ -48,39 +55,76 @@ display:block;
 
 /* HERO */
 .hero{
-background:var(--blue);
+background:linear-gradient(180deg,var(--bg),#112240);
 color:white;
 text-align:center;
-padding:20px;
+padding:25px 15px 30px;
 }
 .hero h1{
 color:var(--gold);
+font-size:20px;
 margin:0;
 }
+.hero p{
+font-size:13px;
+opacity:0.8;
+margin-top:8px;
+}
 
-/* CARD */
+/* PRIZE */
+.prize{
+display:flex;
+justify-content:space-around;
+background:var(--bg);
+color:white;
+padding:15px 10px;
+}
+.prize div{
+text-align:center;
+}
+.prize span{
+display:block;
+font-size:12px;
+color:#ccc;
+}
+.prize strong{
+color:var(--gold);
+font-size:16px;
+}
+
+/* SECTION */
+.section{
+padding:20px 15px;
+}
 .card{
 background:white;
-margin:15px;
 padding:15px;
 border-radius:10px;
+margin-bottom:15px;
 box-shadow:0 5px 15px rgba(0,0,0,0.08);
 }
 
-/* BUTTON */
+/* CTA */
+.cta{
+text-align:center;
+margin:20px 0;
+}
+.btn{
+background:linear-gradient(90deg,#fbbf24,#f59e0b);
+border:none;
+padding:14px 35px;
+border-radius:50px;
+font-weight:700;
+}
+
+/* STICKY */
 .sticky{
 position:fixed;
 bottom:15px;
 width:100%;
 display:flex;
 justify-content:center;
-}
-.btn{
-background:linear-gradient(90deg,#fbbf24,#f59e0b);
-border:none;
-padding:15px 40px;
-border-radius:50px;
-font-weight:bold;
+z-index:999;
 }
 
 /* MODAL */
@@ -93,6 +137,7 @@ width:100%;
 height:100%;
 background:rgba(0,0,0,0.6);
 justify-content:flex-end;
+z-index:1000;
 }
 .modal-content{
 background:white;
@@ -110,15 +155,15 @@ border-radius:6px;
 }
 
 .submit{
-background:var(--blue);
+background:var(--bg);
 color:white;
 padding:14px;
 width:100%;
 border:none;
-font-weight:bold;
+font-weight:700;
 }
 
-/* WhatsApp */
+/* WHATSAPP */
 .whatsapp{
 position:fixed;
 right:15px;
@@ -129,14 +174,22 @@ padding:12px;
 border-radius:50%;
 font-size:20px;
 }
+
+/* FOOTER */
+.footer{
+text-align:center;
+font-size:12px;
+padding:20px;
+color:#555;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="brand">SEVA SETTU</div>
-<a href="https://wa.me/918789846368" style="color:white;">Support</a>
+<div class="logo">SEVA SETTU</div>
+<a href="https://wa.me/918789846368" style="color:white;font-size:14px;">Support</a>
 </header>
 
 <!-- SLIDER -->
@@ -149,42 +202,62 @@ font-size:20px;
 <!-- HERO -->
 <div class="hero">
 <h1>Bihar Scholarship Test</h1>
-<p>Class 6 to 12 Students</p>
+<p>Empowering Students from Class 6 to 12</p>
 </div>
 
-<!-- INFO -->
+<!-- PRIZE -->
+<div class="prize">
+<div><span>1st Prize</span><strong>₹50,000</strong></div>
+<div><span>2nd Prize</span><strong>₹30,000</strong></div>
+<div><span>3rd Prize</span><strong>₹20,000</strong></div>
+</div>
+
+<div class="section">
+
 <div class="card">
-<h3>Exam Info</h3>
+<h3>Exam Details</h3>
 <p>Mode: Online & Offline</p>
+<p>Eligibility: Class 6–12</p>
 <p>Fee: ₹199 (Non-refundable)</p>
-<p>After payment, our team will contact you on WhatsApp within 24 hours.</p>
 </div>
 
-<!-- SYLLABUS -->
+<div class="card">
+<h3>Important Info</h3>
+<p>After payment, our team will contact you on WhatsApp within 24 hours.</p>
+<p>Please ensure your number is correct.</p>
+</div>
+
 <div class="card">
 <h3>Syllabus</h3>
-<a href="syallabus.pdf">Download PDF</a>
+<a href="syllabus.pdf">Download PDF</a>
 </div>
 
-<!-- STICKY BUTTON -->
-<div class="sticky">
+</div>
+
+<div class="cta">
 <button class="btn" onclick="openForm()">Register Now ₹199</button>
 </div>
 
-<!-- MODAL FORM -->
+<!-- STICKY -->
+<div class="sticky">
+<button class="btn" onclick="openForm()">Register Now</button>
+</div>
+
+<!-- MODAL -->
 <div class="modal" id="modal">
 <div class="modal-content">
 <span onclick="closeForm()" style="float:right;font-size:22px;">×</span>
 
-<h3>Register</h3>
+<h3>Student Registration</h3>
 
 <form id="form">
+
 <input type="text" name="Name" placeholder="Student Name" required>
 <input type="text" name="Father" placeholder="Father Name" required>
 <input type="text" name="School" placeholder="School Name" required>
 
-<select name="Class">
-<option>Class</option>
+<select name="Class" required>
+<option value="">Select Class</option>
 <option>6</option><option>7</option><option>8</option>
 <option>9</option><option>10</option><option>11</option><option>12</option>
 </select>
@@ -192,15 +265,19 @@ font-size:20px;
 <input type="tel" name="Mobile" placeholder="WhatsApp Number" required>
 
 <button type="submit" class="submit">Proceed to Payment</button>
+
 </form>
 
 </div>
 </div>
 
-<!-- WHATSAPP -->
 <a href="https://wa.me/918789846368" class="whatsapp">
 <i class="fab fa-whatsapp"></i>
 </a>
+
+<div class="footer">
+<p>© Seva Settu | Bihar</p>
+</div>
 
 <script>
 
@@ -217,7 +294,7 @@ slides[i].classList.add('active');
 function openForm(){document.getElementById("modal").style.display="flex";}
 function closeForm(){document.getElementById("modal").style.display="none";}
 
-/* FORM SUBMIT */
+/* FORM */
 document.getElementById("form").addEventListener("submit",function(e){
 e.preventDefault();
 
