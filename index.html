@@ -36,42 +36,33 @@
             position: sticky; top: 0; z-index: 1000;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .brand-container { display: flex; align-items: center; gap: 8px; flex: 1; }
+        .brand-container { display: flex; align-items: center; gap: 6px; flex: 1; }
         .header-logo { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--gold); object-fit: cover; }
         .logo-text { color: #fff; font-weight: 800; font-size: 0.9rem; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px;}
         
-        .header-timer-wrapper {
-            background: linear-gradient(90deg, #DC2626, #991B1B);
-            border: 1px solid #FECACA; border-radius: 6px;
-            padding: 4px 8px; display: flex; flex-direction: column; align-items: center;
-            box-shadow: 0 0 10px rgba(220, 38, 38, 0.6);
-            animation: pulseAlert 1s infinite;
+        .header-timer {
+            background: linear-gradient(90deg, #DC2626, #991B1B); border: 1px solid #FECACA;
+            color: white; font-size: 0.75rem; font-weight: 800;
+            padding: 5px 10px; border-radius: 8px; display: flex; align-items: center; gap: 4px;
+            animation: pulseAlert 1.5s infinite; box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+            font-family: monospace; white-space: nowrap;
         }
-        .timer-label { font-size: 0.55rem; color: #FFF; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
-        .header-timer { color: var(--gold); font-size: 0.8rem; font-weight: 800; font-family: monospace; white-space: nowrap; }
-        
-        @keyframes pulseAlert { 0% { transform: scale(1); } 50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(220, 38, 38, 0.8); } 100% { transform: scale(1); } }
+        @keyframes pulseAlert { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
-        /* --- 16:9 AUTO SLIDER WITH TRIANGLES --- */
-        .slider-container { width: 100%; aspect-ratio: 16 / 9; position: relative; background: #000; overflow: hidden; border-bottom: 2px solid var(--gold); }
-        .slide { width: 100%; height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.3s ease-in-out; }
+        /* --- 16:9 AUTO SLIDER (CLEAN FULL PHOTO + INNER GLOW) --- */
+        .slider-container { 
+            width: 100%; aspect-ratio: 16 / 9; position: relative; background: var(--bg-dark); 
+            overflow: hidden; border-bottom: 3px solid var(--gold);
+            /* Premium inner lighting instead of ugly triangles */
+            box-shadow: inset 0 0 30px rgba(250, 204, 21, 0.4);
+        }
+        /* object-fit: cover makes sure the photo fills the screen without black bars */
+        .slide { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.4s ease-in-out; }
         .slide.active { opacity: 1; }
-        
-        .slider-container::before {
-            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-            border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-left: 20px solid rgba(250, 204, 21, 0.9); z-index: 10;
-            filter: drop-shadow(2px 0 5px rgba(0,0,0,0.5)); pointer-events: none;
-        }
-        .slider-container::after {
-            content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
-            border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-right: 20px solid rgba(250, 204, 21, 0.9); z-index: 10;
-            filter: drop-shadow(-2px 0 5px rgba(0,0,0,0.5)); pointer-events: none;
-        }
 
         /* --- HERO SECTION --- */
         .hero { background: linear-gradient(145deg, var(--bg-dark), #162c4a); color: white; text-align: center; padding: 20px 15px 25px; border-bottom: 1px solid rgba(250, 204, 21, 0.2); }
-
-.conducted-badge {
+        .conducted-badge {
             display: inline-block; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
             padding: 5px 15px; border-radius: 30px; font-size: 0.65rem; text-transform: uppercase;
             letter-spacing: 2px; color: #CBD5E1; font-weight: 700; margin-bottom: 12px;
@@ -80,7 +71,7 @@
         .hero h1 { color: var(--gold); font-size: 1.6rem; margin: 0 0 5px 0; font-weight: 800; text-shadow: 0 2px 10px rgba(250,204,21,0.2); }
         .hero p { font-size: 0.85rem; margin: 0; opacity: 0.9; }
 
-        /* --- PRIZE GRID --- */
+/* --- PRIZE GRID --- */
         .prize-grid { display: flex; justify-content: space-between; background: var(--bg-dark); padding: 15px; gap: 8px; border-bottom: 3px solid var(--gold); }
         .prize-card { text-align: center; flex: 1; padding: 12px 5px; border-radius: 12px; background: rgba(255,255,255,0.02); }
         
@@ -118,14 +109,15 @@
         .founder-details h4 { margin: 0; color: var(--bg-dark); font-size: 1rem; font-weight: 800;}
         .founder-details p { margin: 2px 0 0 0; font-size: 0.75rem; color: #64748B; font-weight: 600; }
 
-/* RED ALERT DISCLAIMER */
+        /* RED ALERT DISCLAIMER */
         .alert-card { background: #FEF2F2; border: 1px solid #FECACA; border-left: 5px solid var(--danger); }
         .alert-card h3 { color: var(--danger); }
         .alert-text { font-size: 0.85rem; color: #991B1B; font-weight: 700; line-height: 1.5; }
 
         /* SYLLABUS CARD */
         .syllabus-card { background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%); border: 1px solid #BAE6FD; }
-        .syllabus-card h3 { color: #0284C7; }
+
+.syllabus-card h3 { color: #0284C7; }
         .pdf-btn-group { display: flex; gap: 10px; margin-top: 10px; }
         .btn-view, .btn-dl { flex: 1; text-align: center; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 0.85rem; display: flex; justify-content: center; align-items: center; gap: 6px; }
         .btn-view { background: #ffffff; color: #0284C7; border: 1px solid #7DD3FC; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
@@ -164,23 +156,19 @@
         .input-group input, .input-group select { width: 100%; padding: 14px; border: 1.5px solid #E2E8F0; border-radius: 10px; font-family: inherit; font-size: 0.95rem; background: #F8FAFC; font-weight: 600; }
         .input-group input:focus, .input-group select:focus { outline: none; border-color: var(--bg-dark); background: #fff; }
         .pay-btn { background: linear-gradient(90deg, #0B192C, #1e3a63); color: var(--gold); width: 100%; padding: 16px; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 800; margin-top: 10px; box-shadow: 0 8px 20px rgba(11, 25, 44, 0.3); text-transform: uppercase; cursor: pointer; }
-
-.secure-badge { text-align: center; margin-top: 12px; font-size: 0.75rem; color: #64748B; font-weight: 600; }
+        .secure-badge { text-align: center; margin-top: 12px; font-size: 0.75rem; color: #64748B; font-weight: 600; }
 
         .footer { text-align: center; padding: 10px 20px 30px; font-size: 0.75rem; color: #64748B; font-weight: 600; }
     </style>
 </head>
 <body>
 
-    <header>
+<header>
         <div class="brand-container">
             <img src="logo.png" alt="SS" class="header-logo" onerror="this.src='https://via.placeholder.com/32?text=SS'">
             <span class="logo-text">SEVA SETTU <i class="fas fa-check-circle" style="color: var(--success); font-size: 0.8rem;"></i></span>
         </div>
-        <div class="header-timer-wrapper">
-            <span class="timer-label">🔥 Limited Seats</span>
-            <div class="header-timer" id="countdown">Loading...</div>
-        </div>
+        <div class="header-timer" id="countdown">Loading...</div>
     </header>
 
     <div class="slider-container">
@@ -245,7 +233,7 @@
             </div>
         </div>
 
-<div class="card alert-card">
+        <div class="card alert-card">
             <h3><i class="fas fa-exclamation-triangle"></i> Important Info</h3>
             <div class="alert-text">
                 🚨 NOTE: Registration fee is strictly Non-Refundable.<br><br>
@@ -253,7 +241,7 @@
             </div>
         </div>
 
-        <div class="card syllabus-card">
+<div class="card syllabus-card">
             <h3><i class="fas fa-book-open"></i> Syllabus Details</h3>
             <p style="font-size: 0.85rem; color: #0369A1; margin-top: 0; font-weight: 600;">Prepare according to standard NCERT guidelines for your respective class.</p>
             <div class="pdf-btn-group">
@@ -269,7 +257,7 @@
 
     <div class="sticky-nav">
         <div class="glow-wrapper">
-            <button class="main-btn" onclick="toggleModal(true)">
+            <button class="main-btn" onclick="window.toggleModal(true)">
                 REGISTER NOW @ ₹199 <i class="fas fa-arrow-right"></i>
             </button>
         </div>
@@ -280,14 +268,15 @@
         <span>Support</span>
     </a>
 
-    <div class="overlay" id="overlay" onclick="toggleModal(false)"></div>
+    <div class="overlay" id="overlay" onclick="window.toggleModal(false)"></div>
     <div class="modal" id="modal">
         <div class="modal-header">
             <h2>Student Details</h2>
-            <span class="close-btn" onclick="toggleModal(false)">&times;</span>
+            <span class="close-btn" onclick="window.toggleModal(false)">&times;</span>
         </div>
 
-        <form action="https://formsubmit.co/90plusacademy.official@gmail.com" method="POST">
+        <form id="regForm" action="https://formsubmit.co/90plusacademy.official@gmail.com" method="POST" onsubmit="document.getElementById('submitBtn').innerHTML='Redirecting to Secure Payment... ⏳';">
+            
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="Subject" value="New Scholarship Registration">
@@ -323,7 +312,7 @@
                 <input type="tel" name="WhatsApp_Number" placeholder="10-Digit WhatsApp Number" required pattern="[0-9]{10}">
             </div>
 
-            <button type="submit" class="pay-btn" onclick="this.innerHTML='Processing... ⏳';">Proceed to Pay ₹199</button>
+            <button type="submit" class="pay-btn" id="submitBtn">Proceed to Pay ₹199</button>
             
             <div class="secure-badge">
                 <i class="fas fa-lock" style="color: var(--success);"></i> 100% Safe & Secure Payment by <strong>Razorpay</strong>
@@ -331,5 +320,25 @@
         </form>
     </div>
 
-<script>
-        // Modal
+    <script>
+        // Modal Logic
+        window.toggleModal = function(show) {
+
+var m = document.getElementById("modal");
+            var o = document.getElementById("overlay");
+            if(show) { 
+                m.classList.add("active"); 
+                o.classList.add("active"); 
+                document.body.style.overflow = 'hidden'; 
+            } else { 
+                m.classList.remove("active"); 
+                o.classList.remove("active"); 
+                document.body.style.overflow = ''; 
+            }
+        };
+
+        // Live Timer Logic
+        var cdDate = new Date("2026-06-07T00:00:00").getTime();
+        var timerElement = document.getElementById("countdown");
+        if(timerElement) {
+            setInter
