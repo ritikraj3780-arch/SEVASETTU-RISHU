@@ -39,7 +39,7 @@
         .header-logo { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--gold); object-fit: cover; }
         .logo-text { color: #fff; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px; }
         
-        /* NEW: VERIFIED BADGE */
+        /* VERIFIED BADGE */
         .verified-badge { color: #10B981; font-size: 0.9rem; margin-top: 2px;}
 
         .header-timer {
@@ -96,7 +96,7 @@
         .glow-gold .prize-amt { color: var(--gold); } .glow-silver .prize-amt { color: var(--silver); } .glow-bronze .prize-amt { color: var(--bronze); }
         .prize-amt { display: block; font-size: 1.3rem; font-weight: 900; margin-top: 4px; }
 
-        /* --- NEW: TRUST BADGES (Verified NGO, 5K+ Applied, 100% Secure) --- */
+        /* --- TRUST BADGES --- */
         .trust-bar {
             background: white; border-radius: 14px; margin: -10px 15px 15px 15px; padding: 15px 10px;
             display: flex; justify-content: space-between; align-items: center;
@@ -346,5 +346,5 @@
     </div>
 
     <script>
-        // Modal Logic
-        window.toggleModal = function(show) {
+        // Wait for ALL HTML to load before running ANY JavaScript
+        document.addEventListener("DOMContentLoaded", funct
